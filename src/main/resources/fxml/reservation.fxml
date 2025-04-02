@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.locvoiturefx.controllers.ReservationController" spacing="10" alignment="CENTER">
+    <Label text="Gestion des réservations" style="-fx-font-size: 18px;"/>
+
+    <!-- Barre de recherche -->
+    <HBox spacing="10">
+        <TextField fx:id="searchField" promptText="Rechercher par immatriculation ou client"/>
+        <Button text="Rechercher" onAction="#handleSearch"/>
+    </HBox>
+
+    <!-- TableView des réservations -->
+    <TableView fx:id="reservationTable" prefHeight="200" prefWidth="700">
+        <columns>
+            <TableColumn fx:id="colResId" text="ID" prefWidth="50"/>
+            <TableColumn fx:id="colClient" text="Client" prefWidth="150"/>
+            <TableColumn fx:id="colImmatriculation" text="Immatriculation" prefWidth="150"/>
+            <TableColumn fx:id="colStartDate" text="Début" prefWidth="150"/>
+            <TableColumn fx:id="colEndDate" text="Fin" prefWidth="150"/>
+            <TableColumn fx:id="colDaysRemaining" text="Jours Restants" prefWidth="150"/>
+        </columns>
+    </TableView>
+
+    <!-- Formulaire d'ajout/édition -->
+    <HBox spacing="10">
+        <TextField fx:id="clientField" promptText="Nom du client"/>
+        <TextField fx:id="licensePlateField" promptText="Immatriculation (ex: BQ-281-SD)"/>
+        <TextField fx:id="startDateField" promptText="Début (yyyy-MM-dd)"/>
+        <TextField fx:id="endDateField" promptText="Fin (yyyy-MM-dd)"/>
+        <Button text="Ajouter" onAction="#handleAddReservation"/>
+    </HBox>
+
+    <!-- Boutons d'actions -->
+    <HBox spacing="10">
+        <Button fx:id="editReservationButton" text="Modifier" onAction="#handleEditReservation"/>
+        <Button fx:id="deleteReservationButton" text="Supprimer" onAction="#handleDeleteReservation"/>
+        <Button text="Retour" onAction="#handleBack"/>
+    </HBox>
+</VBox>

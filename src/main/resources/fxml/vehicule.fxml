@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.locvoiturefx.controllers.VehiculeController" spacing="10" alignment="CENTER">
+    <Label text="Gestion de la flotte de véhicules" style="-fx-font-size: 18px;"/>
+
+    <!-- Barre de recherche pour véhicules -->
+    <HBox spacing="10">
+        <TextField fx:id="searchVehiculeField" promptText="Rechercher par plaque, marque ou modèle"/>
+        <Button text="Rechercher" onAction="#handleSearchVehicule"/>
+    </HBox>
+
+    <TableView fx:id="vehiculeTable" prefHeight="200.0" prefWidth="700.0">
+        <columns>
+            <TableColumn fx:id="colId" text="ID" prefWidth="50"/>
+            <TableColumn fx:id="colMarque" text="Marque" prefWidth="150"/>
+            <TableColumn fx:id="colModele" text="Modèle" prefWidth="150"/>
+            <TableColumn fx:id="colImmatriculation" text="Immatriculation" prefWidth="150"/>
+        </columns>
+    </TableView>
+
+    <!-- Zone d'ajout/édition -->
+    <HBox spacing="10">
+        <TextField fx:id="marqueField" promptText="Marque"/>
+        <TextField fx:id="modeleField" promptText="Modèle"/>
+        <TextField fx:id="immatriculationField" promptText="Immatriculation"/>
+        <Button fx:id="addVehiculeButton" text="Ajouter" onAction="#handleAddVehicule"/>
+    </HBox>
+
+    <!-- Zone des actions -->
+    <HBox spacing="10">
+        <Button fx:id="deleteVehiculeButton" text="Supprimer" onAction="#handleDeleteVehicule"/>
+        <Button fx:id="editVehiculeButton" text="Modifier" onAction="#handleEditVehicule"/>
+        <Button fx:id="createUserButton" text="Créer un compte" onAction="#handleCreateUserScreen"/>
+        <Button fx:id="listUserButton" text="Liste utilisateurs" onAction="#handleUserList"/>
+        <Button text="Réservations" onAction="#handleReservations"/>
+        <Button text="Déconnexion" onAction="#handleLogout"/>
+    </HBox>
+</VBox>
