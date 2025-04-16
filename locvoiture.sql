@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 02 avr. 2025 à 14:30
+-- Généré le : mer. 16 avr. 2025 à 10:26
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.0.30
 
@@ -20,6 +20,29 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `locvoiture`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `entretiens`
+--
+
+CREATE TABLE `entretiens` (
+  `id` int(11) NOT NULL,
+  `idVehicule` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `type` varchar(100) NOT NULL,
+  `cout` double NOT NULL,
+  `remarques` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `entretiens`
+--
+
+INSERT INTO `entretiens` (`id`, `idVehicule`, `date`, `type`, `cout`, `remarques`) VALUES
+(1, 1, '2025-05-18', 'Carrosserie', 250, 'COuleur'),
+(2, 2, '2025-04-16', 'Frein', 150, 'Disque + plaquette');
 
 -- --------------------------------------------------------
 
@@ -60,11 +83,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `role`) VALUES
-(1, 'admin', '$2y$10$qISkhaXhccdgzQEITYt9E.EcI7lDQFJCXOor2BBs4vYidC8Hmi9WW', 'DIRECTEUR'),
-(2, 'manager', '6ee4a469cd4e91053847f5d3fcb61dbcc91e8f0ef10be7748da4c4a1ba382d17', 'MANAGER'),
-(3, 'employee', '2fdc0177057d3a5c6c2c0821e01f4fa8d90f9a3bb7afd82b0db526af98d68de8', 'EMPLOYE'),
-(4, 'mateo', '34ddf679b4b0ed44ce874ec3e11cf84359acb7a09bacaa3e50232bbdce8da5b3', 'DIRECTEUR'),
-(5, 'Examen', 'c07cd568988e33500141e6191bdb0a310605d22d812a70f1382dd872d59dc3e3', 'DIRECTEUR');
+(1, 'admin', '9e68cef6e2fc7e5dc7fa5f6aeff323cf3cedd58a788984bb5340b63fc7110a96', 'DIRECTEUR');
 
 -- --------------------------------------------------------
 
@@ -84,11 +103,19 @@ CREATE TABLE `vehicules` (
 --
 
 INSERT INTO `vehicules` (`id`, `marque`, `modele`, `immatriculation`) VALUES
-(1, 'Renault', 'Twingo 2', 'BQ-281-SD');
+(1, 'Renault', 'Twingo 2', 'BQ-281-SD'),
+(2, 'iufnsjk', 'scsdvdsv', 'BQ-288-44');
 
 --
 -- Index pour les tables déchargées
 --
+
+--
+-- Index pour la table `entretiens`
+--
+ALTER TABLE `entretiens`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idVehicule` (`idVehicule`);
 
 --
 -- Index pour la table `reservations`
@@ -108,6 +135,32 @@ ALTER TABLE `users`
 --
 ALTER TABLE `vehicules`
   ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT pour les tables déchargées
+--
+
+--
+-- AUTO_INCREMENT pour la table `entretiens`
+--
+ALTER TABLE `entretiens`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT pour la table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- Contraintes pour les tables déchargées
+--
+
+--
+-- Contraintes pour la table `entretiens`
+--
+ALTER TABLE `entretiens`
+  ADD CONSTRAINT `entretiens_ibfk_1` FOREIGN KEY (`idVehicule`) REFERENCES `vehicules` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
